@@ -82,9 +82,9 @@ private:
     ros::Publisher act_enable_pub2;
     ros::Publisher act_enable_pub3;
 
-    std_msgs::UInt16 pick_position_msg;
-    std_msgs::UInt16 throw_position_msg;
-    std_msgs::Bool act_enable_msg;
+    std_msgs::Float32 pick_position_msg;
+    std_msgs::Float32 throw_position_msg;
+    std_msgs::UInt8 act_enable_msg;
 
     double steps_per_mm = 16 * 200 * 3 / 40;
 
