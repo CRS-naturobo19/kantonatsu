@@ -86,7 +86,7 @@ private:
     std_msgs::Float32 throw_position_msg;
     std_msgs::UInt8 act_enable_msg;
 
-    double steps_per_mm = 16 * 200 * 3 / 40;
+    double steps_per_mm = 1;
 
     std::vector<int> pick_position = { 0, 1, 2, 3, 1 };
     int pick_position_index = 0;
