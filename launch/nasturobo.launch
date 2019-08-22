@@ -1,5 +1,5 @@
 <launch>
-    <rosparam file="$(find kantonatsu)/param/elecom_JC_U2912FSDV_joy_assign.yaml" command="load" />
+    <rosparam file="$(find kantonatsu)/param/elecom_JC_U2912FSVD_joy_assign.yaml" command="load" />
 
     <arg name="use_joy" value="true" />
     <!-- base controller_4wheel -->
