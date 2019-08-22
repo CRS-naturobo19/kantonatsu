@@ -82,8 +82,8 @@ private:
     ros::Publisher act_enable_pub2;
     ros::Publisher act_enable_pub3;
 
-    std_msgs::Float32 pick_position_msg;
-    std_msgs::Float32 throw_position_msg;
+    std_msgs::UInt16 pick_position_msg;
+    std_msgs::UInt16 throw_position_msg;
     std_msgs::UInt8 act_enable_msg;
 
     double steps_per_mm = 16 * 200 * 3 / 40;
@@ -253,7 +253,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         {
 //            this->_shutdown = 1;
 
-            ROS_INFO("aborting.");
+//            ROS_INFO("aborting.");
         }
 
 //        act_enable_msg.data = 0;
@@ -263,54 +263,54 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 //        act_enable_pub3.publish(act_enable_msg);
     }
 
-/*    if (!this->_shutdown)
-    {
-        if (_a && !last_a)
-        {
-            // chuck
-            throw_position_msg.data = true;
-            throw_position_pub.publish(throw_position_msg);
-        }
-        else if (_b && !last_b)
-        {
-            // unchuck
-            throw_position_msg.data = false;
-            throw_position_pub.publish(throw_position_msg);
-        }
-        else if (_x && !last_x)
-        {
+//    if (!this->_shutdown)
+//    {
+//        if (_a && !last_a)
+//        {
+//            // chuck
+//            throw_position_msg.data = true;
+//            throw_position_pub.publish(throw_position_msg);
+//        }
+//        else if (_b && !last_b)
+//        {
+//            // unchuck
+//            throw_position_msg.data = false;
+//            throw_position_pub.publish(throw_position_msg);
+//        }
+//       else if (_x && !last_x)
+//        {
+//
+//        }
+//        else if (_y && !last_y)
+//        {
+//
+//        }
+//        else if (_lb && !last_lb)
+//        {
+//            // lower the lift
+//            pick_position_index--;
+//            if (pick_position_index < 0)
+//            {
+//               pick_position_index = 0;
+//            }
+//            pick_position_msg.data = pick_position[pick_position_index];
+//            pick_position_pub.publish(pick_position_msg);
+//
+//            //ROS_INFO("lift: %d")
+//        }
+//        else if (_rb && !last_rb)
+//        {
+//            // raise the lift
+//            pick_position_index++;
+//            if (pick_position_index >= 5)
+//            {
+//                pick_position_index = 4;
+//            }
+//            pick_position_msg.data = pick_position[pick_position_index];
+//            pick_position_pub.publish(pick_position_msg);
+//        }
+//    }
 
-        }
-        else if (_y && !last_y)
-        {
-
-        }
-        else if (_lb && !last_lb)
-        {
-            // lower the lift
-            pick_position_index--;
-            if (pick_position_index < 0)
-            {
-                pick_position_index = 0;
-            }
-            pick_position_msg.data = pick_position[pick_position_index];
-            pick_position_pub.publish(pick_position_msg);
-
-            //ROS_INFO("lift: %d")
-        }
-        else if (_rb && !last_rb)
-        {
-            // raise the lift
-            pick_position_index++;
-            if (pick_position_index >= 5)
-            {
-                pick_position_index = 4;
-            }
-            pick_position_msg.data = pick_position[pick_position_index];
-            pick_position_pub.publish(pick_position_msg);
-        }
-    }
-*/
     last_a = _a;
     last_b = _b;
     last_x = _x;
