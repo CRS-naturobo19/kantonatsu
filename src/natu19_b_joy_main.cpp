@@ -88,7 +88,7 @@ private:
 
     double steps_per_mm = 16 * 200 * 3 / 40;
 
-    std::vector<int> pick_position = { 0, 0, 0, 0, 0 };
+    std::vector<int> pick_position = { 0, 1, 2, 3, 1 };
     int pick_position_index = 0;
 
     std::vector<int> throw_position = { 0, 0, 0, 0, 0 };
@@ -98,7 +98,7 @@ private:
     //static constexpr int lift_position_second = lift_position_first - (248 * steps_per_mm);
     //static constexpr int lift_position_third = lift_position_second - (248 * steps_per_mm);
 
-    int _shutdown = 0;
+    int _shutdown = 1;
 
     static int ButtonA;
     static int ButtonB;
@@ -251,20 +251,22 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     {
         if (!this->_shutdown)
         {
-//            this->_shutdown = 1;
+            this->_shutdown = 1;
 
-//            ROS_INFO("aborting.");
+            ROS_INFO("aborting.");
         }
-
-//        act_enable_msg.data = 0;
-//        act_enable_pub0.publish(act_enable_msg);
-//        act_enable_pub1.publish(act_enable_msg);
-//        act_enable_pub2.publish(act_enable_msg);
-//        act_enable_pub3.publish(act_enable_msg);
+        
+        act_enable_msg.data = 0;
+        act_enable_pub0.publish(act_enable_msg);
+        act_enable_pub1.publish(act_enable_msg);
+        act_enable_pub2.publish(act_enable_msg);
+        act_enable_pub3.publish(act_enable_msg);
+        pick_enable_pub.publish(act_enable_msg);
+        throw_enable_pub.publish(act_enable_msg);
     }
 
-//    if (!this->_shutdown)
-//    {
+    if (!this->_shutdown)
+    {
 //        if (_a && !last_a)
 //        {
 //            // chuck
@@ -285,31 +287,34 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 //        {
 //
 //        }
-//        else if (_lb && !last_lb)
-//        {
-//            // lower the lift
-//            pick_position_index--;
-//            if (pick_position_index < 0)
-//            {
-//               pick_position_index = 0;
-//            }
-//            pick_position_msg.data = pick_position[pick_position_index];
-//            pick_position_pub.publish(pick_position_msg);
-//
-//            //ROS_INFO("lift: %d")
-//        }
-//        else if (_rb && !last_rb)
-//        {
-//            // raise the lift
-//            pick_position_index++;
-//            if (pick_position_index >= 5)
-//            {
-//                pick_position_index = 4;
-//            }
-//            pick_position_msg.data = pick_position[pick_position_index];
-//            pick_position_pub.publish(pick_position_msg);
-//        }
-//    }
+        if (_lb && !last_lb)
+        {
+            // lower the lift
+            pick_position_index--;
+            if (pick_position_index < 0)
+            {
+               pick_position_index = 0;
+            }
+            pick_position_msg.data = pick_position[pick_position_index];
+            pick_position_pub.publish(pick_position_msg);
+
+            ROS_INFO("left");
+        }
+        else if (_rb && !last_rb)
+        {
+            // raise the lift
+            pick_position_index++;
+            if (pick_position_index >= 5)
+            {
+                pick_position_index = 4;
+            }
+            pick_position_msg.data = pick_position[pick_position_index];
+            pick_position_pub.publish(pick_position_msg);
+
+            ROS_INFO("right");
+        }
+    }
+
 
     last_a = _a;
     last_b = _b;
