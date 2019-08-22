@@ -123,19 +123,19 @@ private:
     static constexpr uint16_t id_baseOdomYaw            = 0x207;
     static constexpr uint16_t id_baseConf               = 0x208;
 
-    static constexpr uint16_t id_ft_0_motor_cmd         = 0x4b4;
+    static constexpr uint16_t id_ft_0_motor_cmd         = 0x4b8;
     static constexpr uint16_t id_ft_0_motor_cmd_pos     = (id_ft_0_motor_cmd + 1);
     static constexpr uint16_t id_ft_0_motor_status      = (id_ft_0_motor_cmd + 2);
 
-    static constexpr uint16_t id_ft_1_motor_cmd         = 0x4d4;
+    static constexpr uint16_t id_ft_1_motor_cmd         = 0x4d0;
     static constexpr uint16_t id_ft_1_motor_cmd_pos     = (id_ft_1_motor_cmd + 1);
     static constexpr uint16_t id_ft_1_motor_status      = (id_ft_1_motor_cmd + 2);
 
-    static constexpr uint16_t id_ft_2_motor_cmd         = 0x4e0;
+    static constexpr uint16_t id_ft_2_motor_cmd         = 0x4d4;
     static constexpr uint16_t id_ft_2_motor_cmd_pos     = (id_ft_2_motor_cmd + 1);
     static constexpr uint16_t id_ft_2_motor_status      = (id_ft_2_motor_cmd + 2);
 
-    static constexpr uint16_t id_ft_3_motor_cmd         = 0x4dc;
+    static constexpr uint16_t id_ft_3_motor_cmd         = 0x4e0;
     static constexpr uint16_t id_ft_3_motor_cmd_pos     = (id_ft_3_motor_cmd + 1);
     static constexpr uint16_t id_ft_3_motor_status      = (id_ft_3_motor_cmd + 2);
 
