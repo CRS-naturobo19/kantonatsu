@@ -143,7 +143,7 @@ private:
     static constexpr uint16_t id_th_motor_cmd_pos       = (id_th_motor_cmd + 1);
     static constexpr uint16_t id_th_motor_status        = (id_th_motor_cmd + 2);
 
-    static constexpr uint16_t id_pc_motor_cmd           = 0x50c;
+    static constexpr uint16_t id_pc_motor_cmd           = 0x4f4;
     static constexpr uint16_t id_pc_motor_cmd_pos       = (id_pc_motor_cmd + 1);
     static constexpr uint16_t id_pc_motor_status        = (id_pc_motor_cmd + 2);
 
