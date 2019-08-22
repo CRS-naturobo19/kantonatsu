@@ -140,7 +140,7 @@ CrMain::CrMain(void)
     this->pick_position_pub = nh_.advertise<std_msgs::Float32>("pick/motorpc_cmd_pos", 1);
     this->pick_enable_pub = nh_.advertise<std_msgs::UInt8>("pick/motorpc_cmd", 1);
     this->act_enable_pub0 = nh_.advertise<std_msgs::UInt8>("base/motor0_cmd", 1);
-    this->act_enable_pub1 = nh_.advertise<std_msgs::UInt8>("base/motwr1_cmd", 1);
+    this->act_enable_pub1 = nh_.advertise<std_msgs::UInt8>("base/motr1_cmd", 1);
     this->act_enable_pub2 = nh_.advertise<std_msgs::UInt8>("base/motor2_cmd", 1);
     this->act_enable_pub3 = nh_.advertise<std_msgs::UInt8>("base/motor3_cmd", 1);
     //this->hand_unchuck_thres_pub = nh_.advertise<std_msgs::UInt16>("hand/unchuck_thres", 1);
