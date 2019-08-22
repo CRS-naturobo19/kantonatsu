@@ -290,7 +290,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         if (_lb && !last_lb)
         {
             // lower the lift
-            pick_position_index--;
+            pick_position_index = 0;
             if (pick_position_index < 0)
             {
                pick_position_index = 0;
@@ -303,7 +303,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         else if (_rb && !last_rb)
         {
             // raise the lift
-            pick_position_index++;
+            pick_position_index = 1;
             if (pick_position_index >= 5)
             {
                 pick_position_index = 4;
