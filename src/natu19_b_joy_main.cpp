@@ -82,8 +82,8 @@ private:
     ros::Publisher act_enable_pub2;
     ros::Publisher act_enable_pub3;
 
-    std_msgs::UInt16 pick_position_msg;
-    std_msgs::UInt16 throw_position_msg;
+    std_msgs::Float32 pick_position_msg;
+    std_msgs::Float32 throw_position_msg;
     std_msgs::UInt8 act_enable_msg;
 
     double steps_per_mm = 16 * 200 * 3 / 40;
@@ -98,7 +98,7 @@ private:
     //static constexpr int lift_position_second = lift_position_first - (248 * steps_per_mm);
     //static constexpr int lift_position_third = lift_position_second - (248 * steps_per_mm);
 
-    int _shutdown = 1;
+    bool _shutdown = true;
 
     static int ButtonA;
     static int ButtonB;
