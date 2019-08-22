@@ -1,5 +1,5 @@
 <launch>
-    <rosparam file="$(find nhk2018_main_ros)/param/joy_assign_wireless.yaml" command="load" />
+    <rosparam file="$(kantonatsu)/param/elecom_JC_U2912FSDV_joy_assign.yaml" command="load" />
 
     <arg name="use_joy" value="true" />
     <!-- base controller_4wheel -->
