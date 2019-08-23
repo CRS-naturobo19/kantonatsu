@@ -88,10 +88,10 @@ private:
 
     double steps_per_mm = 1;
 
-    std::vector<int> pick_position = { 0, 1, 2, 3, 1 };
+    std::vector<double> pick_position = { 0, 1, 2, 3, 1 };
     int pick_position_index = 0;
 
-    std::vector<int> throw_position = { 0, 1, 2, 3, 1 };
+    std::vector<double> throw_position = { 0, 1, 2, 3, 1 };
     int throw_position_index = 0;
     //		{0, -40 * steps_per_mm;
     //static constexpr int lift_position_first = -40 * steps_per_mm;
@@ -149,19 +149,19 @@ CrMain::CrMain(void)
 
     nh_priv.getParam("lift_step_per_mm", this->steps_per_mm);
 
-    std::vector<int> tmp;
+    std::vector<double> tmp;
     nh_priv.getParam("pick_position", tmp);
     if (tmp.size() == 5)
     {
         this->pick_position = tmp;
     }
 
-    for (int& pos : this->pick_position)
+    for (double& pos : this->pick_position)
     {
         pos *= (-steps_per_mm);
     }
 
-    ROS_INFO("pick_pos: %d, %d, %d, %d, %d", this->pick_position[0], this->pick_position[1], this->pick_position[2],
+    ROS_INFO("pick_pos: %f, %f, %f, %f, %f", this->pick_position[0], this->pick_position[1], this->pick_position[2],
             this->pick_position[3], this->pick_position[4]);
 
     nh_.getParam("ButtonA", ButtonA);
