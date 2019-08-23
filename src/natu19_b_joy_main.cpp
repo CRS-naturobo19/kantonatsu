@@ -91,7 +91,7 @@ private:
     std::vector<int> pick_position = { 0, 1, 2, 3, 1 };
     int pick_position_index = 0;
 
-    std::vector<int> throw_position = { 0, 0, 0, 0, 0 };
+    std::vector<int> throw_position = { 0, 1, 2, 3, 1 };
     int throw_position_index = 0;
     //		{0, -40 * steps_per_mm;
     //static constexpr int lift_position_first = -40 * steps_per_mm;
@@ -220,6 +220,8 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     static bool last_rb = false;
     static bool last_start = false;
     static bool last_select = false;
+    static bool last_LeftThumb = false;
+    static bool last_RightThumb = false;
     //static int last_dpadXCmd = 0;
 
     bool _a = joy->buttons[ButtonA];
@@ -230,6 +232,8 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     bool _rb = joy->buttons[ButtonRB];
     bool _start = joy->buttons[ButtonStart];
     bool _select = joy->buttons[ButtonSelect];
+    bool _LeftThumb = joy->buttons[ButtonLeftThumb];
+    bool _RightThumb = joy->buttons[ButtonRightThumb];
 
     if (_start && !last_start)
     {
@@ -267,18 +271,32 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
     if (!this->_shutdown)
     {
-//        if (_a && !last_a)
-//        {
-//            // chuck
-//            throw_position_msg.data = true;
-//            throw_position_pub.publish(throw_position_msg);
-//        }
-//        else if (_b && !last_b)
-//        {
-//            // unchuck
-//            throw_position_msg.data = false;
-//            throw_position_pub.publish(throw_position_msg);
-//        }
+        if (_LeftThumb && !last_LeftThumb)
+        {
+            // lower the lift
+            throw_position_index = 0;
+            if (throw_position_index < 0)
+            {
+               throw_position_index = 4;
+            }
+            throw_position_msg.data = throw_position[throw_position_index];
+            throw_position_pub.publish(throw_position_msg);
+
+            ROS_INFO("thleft");
+        }
+        else if (_RightThumb && !last_RightThumb)
+        {
+            // raise the lift
+            throw_position_index = 1;
+            if (throw_position_index >= 5)
+            {
+                throw_position_index = 0;
+            }
+            throw_position_msg.data = throw_position[throw_position_index];
+            throw_position_pub.publish(throw_position_msg);
+
+            ROS_INFO("thright");
+        }
 //       else if (_x && !last_x)
 //        {
 //
@@ -287,7 +305,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 //        {
 //
 //        }
-        if (_lb && !last_lb)
+        else if (_lb && !last_lb)
         {
             // lower the lift
             pick_position_index = 0;
