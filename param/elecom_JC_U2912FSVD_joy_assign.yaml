@@ -2,12 +2,12 @@ ButtonA: 3
 ButtonB: 2
 ButtonX: 1
 ButtonY: 0
-ButtonLB: 5
-ButtonRB: 4
+ButtonLB: 4
+ButtonRB: 5
 ButtonSelect: 10
 ButtonStart: 11
-ButtonLeftThumb: 7
-ButtonRightThumb: 6
+ButtonLeftThumb: 6
+ButtonRightThumb: 7
 AxisLeftThumbX: 0
 AxisLeftThumbY: 1
 AxisRightThumbX: 2
