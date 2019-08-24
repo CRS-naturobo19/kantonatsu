@@ -88,7 +88,7 @@ private:
 
     double steps_per_mm = 1;
 
-    std::vector<double> pick_position = { 0, 1, 2, 3, 1 };
+    std::vector<double> pick_position = { 0, 1, -1, 3, 1 };
     int pick_position_index = 0;
 
     std::vector<double> throw_position = { 0, 1, 2, 3, 1 };
@@ -295,12 +295,18 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
             throw_position_msg.data = throw_position[throw_position_index];
             throw_position_pub.publish(throw_position_msg);
 
-            ROS_INFO("thright");
+            ROS_INFO("pcstop");
         }
-//       else if (_x && !last_x)
-//        {
-//
-//        }
+       else if (_a && !last_a)
+        {
+            // lower the lift
+            pick_position_index = 0;
+            pick_position_msg.data = pick_position[pick_position_index];
+            pick_position_pub.publish(pick_position_msg);
+
+            ROS_INFO("pcleft");
+
+        }
 //        else if (_y && !last_y)
 //        {
 //
@@ -308,11 +314,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         else if (_lb && !last_lb)
         {
             // lower the lift
-            pick_position_index = 0;
-            if (pick_position_index < 0)
-            {
-               pick_position_index = 0;
-            }
+            pick_position_index = 1;
             pick_position_msg.data = pick_position[pick_position_index];
             pick_position_pub.publish(pick_position_msg);
 
@@ -321,15 +323,11 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         else if (_rb && !last_rb)
         {
             // raise the lift
-            pick_position_index = 1;
-            if (pick_position_index >= 5)
-            {
-                pick_position_index = 4;
-            }
+            pick_position_index = 2;
             pick_position_msg.data = pick_position[pick_position_index];
             pick_position_pub.publish(pick_position_msg);
 
-            ROS_INFO("right");
+            ROS_INFO("pcright");
         }
     }
 
