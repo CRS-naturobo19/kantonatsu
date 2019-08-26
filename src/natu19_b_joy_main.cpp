@@ -88,10 +88,10 @@ private:
 
     double steps_per_mm = 1;
 
-    std::vector<double> pick_position = { 0, 1, -1, 3, 1 };
+    std::vector<double> pick_position = { 0, 0.01, -0.01, 3, 1 };
     int pick_position_index = 0;
 
-    std::vector<double> throw_position = { 0, 1, -1, 3, 1 };
+    std::vector<double> throw_position = { 0, 0.01, -0.01, 3, 1 };
     int throw_position_index = 0;
     //		{0, -40 * steps_per_mm;
     //static constexpr int lift_position_first = -40 * steps_per_mm;
