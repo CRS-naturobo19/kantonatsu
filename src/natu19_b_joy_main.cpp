@@ -273,21 +273,21 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     {
         if (_LeftThumb && !last_LeftThumb)
         {
-            // lower the lift
-            throw_position_index = 0;
-            throw_position_msg.data = throw_position[throw_position_index];
-            throw_position_pub.publish(throw_position_msg);
-
-            ROS_INFO("thleft");
-        }
-        else if (_RightThumb && !last_RightThumb)
-        {
-            // raise the lift
+            // flont spin the throw
             throw_position_index = 1;
             throw_position_msg.data = throw_position[throw_position_index];
             throw_position_pub.publish(throw_position_msg);
 
-            ROS_INFO("thright");
+            ROS_INFO("th flont spin");
+        }
+        else if (_RightThumb && !last_RightThumb)
+        {
+            // back spin the throw
+            throw_position_index = 2;
+            throw_position_msg.data = throw_position[throw_position_index];
+            throw_position_pub.publish(throw_position_msg);
+
+            ROS_INFO("th back spin");
         }
        else if (_a && !last_a)
         {
@@ -301,7 +301,12 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         }
         else if (_b && !last_b)
         {
+            // stop the throw
+            throw_position_index = 0;
+            throw_position_msg.data = throw_position[throw_position_index];
+            throw_position_pub.publish(throw_position_msg);
 
+            ROS_INFO("th stop");
         }
         else if (_lb && !last_lb)
         {
