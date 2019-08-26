@@ -275,10 +275,6 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         {
             // lower the lift
             throw_position_index = 0;
-            if (throw_position_index < 0)
-            {
-               throw_position_index = 4;
-            }
             throw_position_msg.data = throw_position[throw_position_index];
             throw_position_pub.publish(throw_position_msg);
 
@@ -288,46 +284,42 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
         {
             // raise the lift
             throw_position_index = 1;
-            if (throw_position_index >= 5)
-            {
-                throw_position_index = 0;
-            }
             throw_position_msg.data = throw_position[throw_position_index];
             throw_position_pub.publish(throw_position_msg);
 
-            ROS_INFO("pcstop");
+            ROS_INFO("thright");
         }
        else if (_a && !last_a)
         {
-            // lower the lift
+            // stop the pick
             pick_position_index = 0;
             pick_position_msg.data = pick_position[pick_position_index];
             pick_position_pub.publish(pick_position_msg);
 
-            ROS_INFO("pcleft");
+            ROS_INFO("pc stop");
 
         }
-//        else if (_y && !last_y)
-//        {
-//
-//        }
+        else if (_b && !last_b)
+        {
+
+        }
         else if (_lb && !last_lb)
         {
-            // lower the lift
+            // flont spin the pick
             pick_position_index = 1;
             pick_position_msg.data = pick_position[pick_position_index];
             pick_position_pub.publish(pick_position_msg);
 
-            ROS_INFO("left");
+            ROS_INFO("pc flont spin");
         }
         else if (_rb && !last_rb)
         {
-            // raise the lift
+            // back spin the pick
             pick_position_index = 2;
             pick_position_msg.data = pick_position[pick_position_index];
             pick_position_pub.publish(pick_position_msg);
 
-            ROS_INFO("pcright");
+            ROS_INFO("pc back spin");
         }
     }
 
