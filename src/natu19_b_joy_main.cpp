@@ -88,10 +88,10 @@ private:
 
     double steps_per_mm = 1;
 
-    std::vector<double> pick_position = { 0, 0.01, -0.01, 3, 1 };
+    std::vector<double> pick_position = { 0, 3, -3, 0, 0 };
     int pick_position_index = 0;
 
-    std::vector<double> throw_position = { 0, 0.01, -0.01, 3, 1 };
+    std::vector<double> throw_position = { 0, 6, 0, 0, 0 };
     int throw_position_index = 0;
     //		{0, -40 * steps_per_mm;
     //static constexpr int lift_position_first = -40 * steps_per_mm;
@@ -280,15 +280,15 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
             ROS_INFO("th flont spin");
         }
-        else if (_RightThumb && !last_RightThumb)
-        {
-            // back spin the throw
-            throw_position_index = 2;
-            throw_position_msg.data = throw_position[throw_position_index];
-            throw_position_pub.publish(throw_position_msg);
-
-            ROS_INFO("th back spin");
-        }
+//        else if (_RightThumb && !last_RightThumb)
+//        {
+//            // back spin the throw
+//            throw_position_index = 2;
+//            throw_position_msg.data = throw_position[throw_position_index];
+//            throw_position_pub.publish(throw_position_msg);
+//
+//            ROS_INFO("th back spin");
+//        }
        else if (_a && !last_a)
         {
             // stop the pick
