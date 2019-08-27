@@ -273,23 +273,23 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     {
         if (_7 && !last_7)
         {
-            // flont spin the throw
+            // receive  the throw
             throw_position_index = 1;
             throw_position_msg.data = throw_position[throw_position_index];
             throw_position_pub.publish(throw_position_msg);
 
-            ROS_INFO("th flont spin");
+            ROS_INFO("th receive");
         }
         else if (_8 && !last_8)
         {
-            // back spin the throw
+            //  the throw
             throw_position_index = 2;
             throw_position_msg.data = throw_position[throw_position_index];
             throw_position_pub.publish(throw_position_msg);
 
-            ROS_INFO("th back spin");
+            ROS_INFO("th throw");
         }
-       else if (_1 && !last_1)
+       else if (_3 && !last_3)
         {
             // stop the pick
             pick_position_index = 0;
@@ -299,7 +299,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
             ROS_INFO("pc stop");
 
         }
-        else if (_2 && !last_2)
+        else if (_4 && !last_4)
         {
             // stop the throw
             throw_position_index = 0;
@@ -308,23 +308,39 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
             ROS_INFO("th stop");
         }
-        else if (_7 && !last_7)
+        else if (_1 && !last_1)
         {
-            // flont spin the pick
+            // start the pick
+            act_enable_msg.data = 0;
+            pick_enable_pub.publish(act_enable_msg);
+
+            ROS_INFO("pc start");
+        }
+        else if (_2 && !last_2)
+        {
+            // shutdown the pick
+            act_enable_msg.data = 0;
+            pick_enable_pub.publish(act_enable_msg);
+
+            ROS_INFO("pc shutdown");
+        }
+        else if (_5 && !last_5)
+        {
+            // set the pick
             pick_position_index = 1;
             pick_position_msg.data = pick_position[pick_position_index];
             pick_position_pub.publish(pick_position_msg);
 
-            ROS_INFO("pc flont spin");
+            ROS_INFO("pc set");
         }
-        else if (_8 && !last_8)
+        else if (_6 && !last_6)
         {
-            // back spin the pick
+            // serve the pick
             pick_position_index = 2;
             pick_position_msg.data = pick_position[pick_position_index];
             pick_position_pub.publish(pick_position_msg);
 
-            ROS_INFO("pc back spin");
+            ROS_INFO("pc serve");
         }
     }
 
@@ -335,6 +351,8 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     last_4 = _4;
     last_5 = _5;
     last_6 = _6;
+    last_7 = _7
+    last_8 = _8;
     last_11 = _11;
     last_12 = _12;
 }
