@@ -235,7 +235,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     bool _7 = joy->buttons[Button7];
     bool _8 = joy->buttons[Button8];
 
-    if (_start && !last_start)
+    if (_12 && !last_12)
     {
         ROS_INFO("starting.");
 
@@ -251,7 +251,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     }
 
 
-    if (_select && !last_select)
+    if (_11 && !last_11)
     {
         if (!this->_shutdown)
         {
@@ -351,7 +351,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     last_4 = _4;
     last_5 = _5;
     last_6 = _6;
-    last_7 = _7
+    last_7 = _7;
     last_8 = _8;
     last_11 = _11;
     last_12 = _12;
