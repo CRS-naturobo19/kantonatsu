@@ -88,10 +88,10 @@ private:
 
     double steps_per_mm = 1;
 
-    std::vector<double> pick_position = { 0, 3, -3, 0, 0 };
+    std::vector<double> pick_position = { 0, 3.7, 0, 0, 0 };
     int pick_position_index = 0;
 
-    std::vector<double> throw_position = { 0, 6, 0, 0, 0 };
+    std::vector<double> throw_position = { 0, 9.1, 13.2, 0, 0 };
     int throw_position_index = 0;
     //		{0, -40 * steps_per_mm;
     //static constexpr int lift_position_first = -40 * steps_per_mm;
@@ -100,31 +100,31 @@ private:
 
     bool _shutdown = true;
 
-    static int ButtonA;
-    static int ButtonB;
-    static int ButtonX;
-    static int ButtonY;
-    static int ButtonLB;
-    static int ButtonRB;
-    static int ButtonSelect;
-    static int ButtonStart;
-    static int ButtonLeftThumb;
-    static int ButtonRightThumb;
+    static int Button1;
+    static int Button2;
+    static int Button3;
+    static int Button4;
+    static int Button5;
+    static int Button6;
+    static int Button11;
+    static int Button12;
+    static int Button7;
+    static int Button8;
 
     static int AxisDPadX;
     static int AxisDPadY;
 };
 
-int CrMain::ButtonA = 0;
-int CrMain::ButtonB = 1;
-int CrMain::ButtonX = 2;
-int CrMain::ButtonY = 3;
-int CrMain::ButtonLB = 4;
-int CrMain::ButtonRB = 5;
-int CrMain::ButtonSelect = 6;
-int CrMain::ButtonStart = 7;
-int CrMain::ButtonLeftThumb = 8;
-int CrMain::ButtonRightThumb = 9;
+int CrMain::Button1 = 0;
+int CrMain::Button2 = 1;
+int CrMain::Button3 = 2;
+int CrMain::Button4 = 3;
+int CrMain::Button5 = 4;
+int CrMain::Button6 = 5;
+int CrMain::Button7 = 6;
+int CrMain::Button8 = 7;
+int CrMain::Button11 = 10;
+int CrMain::Button12 = 11;
 
 int CrMain::AxisDPadX = 6;
 int CrMain::AxisDPadY = 7;
@@ -164,16 +164,16 @@ CrMain::CrMain(void)
     ROS_INFO("pick_pos: %f, %f, %f, %f, %f", this->pick_position[0], this->pick_position[1], this->pick_position[2],
             this->pick_position[3], this->pick_position[4]);
 
-    nh_.getParam("ButtonA", ButtonA);
-    nh_.getParam("ButtonB", ButtonB);
-    nh_.getParam("ButtonX", ButtonX);
-    nh_.getParam("ButtonY", ButtonY);
-    nh_.getParam("ButtonLB", ButtonLB);
-    nh_.getParam("ButtonRB", ButtonRB);
-    nh_.getParam("ButtonSelect", ButtonSelect);
-    nh_.getParam("ButtonStart", ButtonStart);
-    nh_.getParam("ButtonLeftThumb", ButtonLeftThumb);
-    nh_.getParam("ButtonRightThumb", ButtonRightThumb);
+    nh_.getParam("Button1", Button1);
+    nh_.getParam("Button2", Button2);
+    nh_.getParam("Button3", Button3);
+    nh_.getParam("Button4", Button4);
+    nh_.getParam("Button5", Button5);
+    nh_.getParam("Button6", Button6);
+    nh_.getParam("Button11", Button11);
+    nh_.getParam("Button12", Button12);
+    nh_.getParam("Button7", Button7);
+    nh_.getParam("Button8", Button8);
 
     nh_.getParam("AxisDPadX", AxisDPadX);
     nh_.getParam("AxisDPadY", AxisDPadY);
@@ -212,28 +212,28 @@ void CrMain::startInputCallback(const std_msgs::Empty::ConstPtr& msg)
 
 void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 {
-    static bool last_a = false;
-    static bool last_b = false;
-    static bool last_x = false;
-    static bool last_y = false;
-    static bool last_lb = false;
-    static bool last_rb = false;
-    static bool last_start = false;
-    static bool last_select = false;
-    static bool last_LeftThumb = false;
-    static bool last_RightThumb = false;
+    static bool last_1 = false;
+    static bool last_2 = false;
+    static bool last_3 = false;
+    static bool last_4 = false;
+    static bool last_5 = false;
+    static bool last_6 = false;
+    static bool last_11 = false;
+    static bool last_12 = false;
+    static bool last_7 = false;
+    static bool last_8 = false;
     //static int last_dpadXCmd = 0;
 
-    bool _a = joy->buttons[ButtonA];
-    bool _b = joy->buttons[ButtonB];
-    bool _x = joy->buttons[ButtonX];
-    bool _y = joy->buttons[ButtonY];
-    bool _lb = joy->buttons[ButtonLB];
-    bool _rb = joy->buttons[ButtonRB];
-    bool _start = joy->buttons[ButtonStart];
-    bool _select = joy->buttons[ButtonSelect];
-    bool _LeftThumb = joy->buttons[ButtonLeftThumb];
-    bool _RightThumb = joy->buttons[ButtonRightThumb];
+    bool _1 = joy->buttons[Button1];
+    bool _2 = joy->buttons[Button2];
+    bool _3 = joy->buttons[Button3];
+    bool _4 = joy->buttons[Button4];
+    bool _5 = joy->buttons[Button5];
+    bool _6 = joy->buttons[Button6];
+    bool _11 = joy->buttons[Button11];
+    bool _12 = joy->buttons[Button12];
+    bool _7 = joy->buttons[Button7];
+    bool _8 = joy->buttons[Button8];
 
     if (_start && !last_start)
     {
@@ -271,7 +271,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
     if (!this->_shutdown)
     {
-        if (_LeftThumb && !last_LeftThumb)
+        if (_7 && !last_7)
         {
             // flont spin the throw
             throw_position_index = 1;
@@ -280,16 +280,16 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
             ROS_INFO("th flont spin");
         }
-//        else if (_RightThumb && !last_RightThumb)
-//        {
-//            // back spin the throw
-//            throw_position_index = 2;
-//            throw_position_msg.data = throw_position[throw_position_index];
-//            throw_position_pub.publish(throw_position_msg);
-//
-//            ROS_INFO("th back spin");
-//        }
-       else if (_a && !last_a)
+        else if (_8 && !last_8)
+        {
+            // back spin the throw
+            throw_position_index = 2;
+            throw_position_msg.data = throw_position[throw_position_index];
+            throw_position_pub.publish(throw_position_msg);
+
+            ROS_INFO("th back spin");
+        }
+       else if (_1 && !last_1)
         {
             // stop the pick
             pick_position_index = 0;
@@ -299,7 +299,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
             ROS_INFO("pc stop");
 
         }
-        else if (_b && !last_b)
+        else if (_2 && !last_2)
         {
             // stop the throw
             throw_position_index = 0;
@@ -308,7 +308,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
             ROS_INFO("th stop");
         }
-        else if (_lb && !last_lb)
+        else if (_7 && !last_7)
         {
             // flont spin the pick
             pick_position_index = 1;
@@ -317,7 +317,7 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
 
             ROS_INFO("pc flont spin");
         }
-        else if (_rb && !last_rb)
+        else if (_8 && !last_8)
         {
             // back spin the pick
             pick_position_index = 2;
@@ -329,14 +329,14 @@ void CrMain::joyCallback(const sensor_msgs::Joy::ConstPtr& joy)
     }
 
 
-    last_a = _a;
-    last_b = _b;
-    last_x = _x;
-    last_y = _y;
-    last_lb = _lb;
-    last_rb = _rb;
-    last_start = _start;
-    last_select = _select;
+    last_1 = _1;
+    last_2 = _2;
+    last_3 = _3;
+    last_4 = _4;
+    last_5 = _5;
+    last_6 = _6;
+    last_11 = _11;
+    last_12 = _12;
 }
 
 int main(int argc, char** argv)
